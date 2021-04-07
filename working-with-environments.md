@@ -6,7 +6,7 @@ While the variables are stored by default in the collection you can use Postman 
 
 The pre-request script has been written to determine if an environment has been selected. If it has been, the environment variables will be used for the authorization. By default in Postman the environment variables will supersede the collection level variables. 
 
-> ⚠️  Using environments means that you will store Marketing Cloud credentials in clear in Postman. Do this at your own risks.
+> ⚠️  Using environments means that you will store Marketing Cloud credentials in clear in Postman. Do this at your own risk.
 
 - [Import the Template Environment](#import-the-template-environment)
 - [Configure the Environment](#configure-the-environment)
@@ -44,13 +44,14 @@ The pre-request script has been written to determine if an environment has been 
 |Variable|Example Value|Description|
 |-|-|-|
 |loginUrl|login.salesforce.com|Using login.salesforce.com will be fine unless you are using a sandbox.|
-|clientId|3MVG9l2zHsylwlpR6H5xByqIHvFbLVATgzkY...|Consumer key from the connected app created in the [Connected App Setup](#connected-app-setup) section.|
-|userName|aaroncates@aaroncates-20210405.demo|User Name of the user you authorized in the [App Authorization](#app-authorization) section.|
-|privateKey|-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA6spOAo1NhTsOhj19M  <br />...<br />  rEOBZ458a3O4EOfHP1luZb4ZGrnTDRcA== <br /> -----END RSA PRIVATE KEY-----| Contents of host.key file generated in [Create Private Public Key Pair](#create-private-public-key-pair) section.|
+|clientId|3MVG9l2zHsylwlpR6H5xByqIHvFbLVATgzkY...|Consumer key from the connected app created in the [Connected App Setup](install-the-collection.md#connected-app-setup) section.|
+|userName|aaroncates@aaroncates-20210405.demo|User Name of the user you authorized in the [App Authorization](install-the-collection.md#app-authorization) section.|
+|privateKey|-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA6spOAo1NhTsOhj19M  <br />...<br />  rEOBZ458a3O4EOfHP1luZb4ZGrnTDRcA== <br /> -----END RSA PRIVATE KEY-----| Contents of host.key file generated in [Create Private Public Key Pair](install-the-collection.md#create-private-public-key-pair) section.|
 
 8. Click **Update** and close the environments dialog
 9. Select your environment from the environment dropdown
 
     ![Select environment screenshot](images/select-env.png)
 10. All requests will now use the selected environment instead of the collection level variables.
+
 [Back to main page](README.md)

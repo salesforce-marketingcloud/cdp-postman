@@ -16,7 +16,7 @@
 
 ### Desktop App
 
-Download and install the Postman app from [this link](https://www.postman.com/downloads).
+Download and install the Postman app from [Postman](https://www.postman.com/downloads).
 
 ### Web App
 Not currently supported. Please use the desktop application.
@@ -65,7 +65,7 @@ This collection utilizes Salesforce's server to server [JWT bearer flow](https:/
 
         ![Connected App Setup 1 Screenshot](images/connected-app-setup-1.png)
     9. Select **Save** (on the next screen select **Continue**)
-    10. Make note of the **Consumer Key** value. This will be used as the **“clientId”* variable in the Postman collection.
+    10. Make note of the **Consumer Key** value. This will be used as the **“clientId”** variable in the Postman collection.
 
         ![Connected App Setup 2 Screenshot](images/connected-app-setup-2.png)
 
@@ -93,10 +93,10 @@ The URL format will look like:
 
 ![App URL Screenshot](images/app-url.png)
 
-**YOUR_CONSUMER_KEY** is the consumer key noted in step 4.10 above.
+**YOUR_CONSUMER_KEY** is the consumer key noted in step 4.x above.
 
 **Example URL:**
->https://aaroncates-20204005-demo.lightning.force.com/services/oauth2/authorize?response_type=code&client_id=asdlfjasldfjsaldfjaslfds&scope=api%20refresh_token%20cdpprofile%20cdpquery&redirect_uri=https://oauth.pstmn.io/v1/callback
+>https://aaroncates-20214005-demo.lightning.force.com/services/oauth2/authorize?response_type=code&client_id=asdlfjasldfjsaldfjaslfds&scope=api%20refresh_token%20cdpprofile%20cdpquery&redirect_uri=https://oauth.pstmn.io/v1/callback
 
 1. Paste that URL in a browser window. 
 2. This prompts a consent dialog asking permission for each of the scopes requested above.  Select **Allow** and you should be redirected back.
@@ -104,9 +104,10 @@ The URL format will look like:
     ![Access Prompt Screenshot](images/access-prompt.png)
 
 3. You may also get an alert from the callback. If you do, select **Open Postman**
+
     ![Postman Redirect Screenshot](images/postman-redirect.png)
 
-4. If you want to verify everything is authorized correctly, in the Quick Find search for **“Connected Apps OAuth Usage”**. Here you will see your connected app and should see a user count of 1.
+4. **Optional:** If you want to verify everything is authorized correctly, in the Quick Find search for **“Connected Apps OAuth Usage”**. Here you will see your connected app and should see a user count of 1.
 
     ![Connected App Verification Screenshot](images/connect-app-verification.png)
 
@@ -150,7 +151,9 @@ The collection is built to leverage the [OAuth 2.0 JWT Bearer Flow for Server-to
 
 ![Collection variables screenshot](images/authorization-flow.png)
 
-To simplify the use of the the collection this authorization process has been configured to run automatically prior to each request and check if a valid token exists. This is accomplished by using the collection variables defined in the [Configure the Collection](#configure-the-collection) section combined with a pre-request script. 
+> **NOTE: To simplify the use of the the collection this authorization process has been configured to run automatically prior to each request and check if a valid token exists.** 
+
+This is accomplished by using the collection variables defined in the [Configure the Collection](#configure-the-collection) section combined with a pre-request script. 
 
 The script creates six new variables that are used for token generation and should not be edited:
 * dne_c360TokenRefreshTime
