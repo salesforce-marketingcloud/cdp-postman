@@ -41,10 +41,10 @@ This collection utilizes Salesforce's server to server [JWT bearer flow](https:/
 
 1. Login to Salesforce → Setup and Search **“OAuth Custom Scopes”**
 2. Select **“New Custom Scope”**
-    1. Name: cdpprofile
+    1. Name: cdpprofile **Important: ensure name and casing is identical**
     2. Description: C360 Profile API
     3. Select Save & New
-    4. Name: cdpquery
+    4. Name: cdpquery **Important: ensure name and casing is identical**
     5. Description: C360 Query API
     6. Select Save
 3. In the Setup’s Quick Find search "**App Manager**"
