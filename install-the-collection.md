@@ -133,7 +133,7 @@ The collection uses a series of collection variables to help streamline your cal
 
 1. Click **Salesforce C360 APIs**
 2. Open the **Variables** tab 
-3. Complete the following variables for your instance. 
+3. Complete the following variables for your instance by placing the values in the **Current Value** column. 
 
 |Variable|Example Value|Description|
 |-|-|-|
