@@ -4,7 +4,7 @@ This repository is dedicated to hosting the setup/contribution documentation and
 
 # C360 APIs for Postman
 
-The current [Postman](https://www.postman.com) collection of consists of 11 requests for the following Salesforce C360 APIs:
+The current [Postman](https://www.postman.com) collection of consists of 25+ requests for the following Salesforce C360 APIs:
 
 <table>
    <tr>
@@ -18,6 +18,13 @@ The current [Postman](https://www.postman.com) collection of consists of 11 requ
       </td>
    </tr>
 </table>
+
+The collection is divided into 2 API types. 
+
+- **Direct APIs** - allows you to perform some of the Salesforce CDP application tasks programmatically via a Direct API to the underlying data store. This is the preferred approach to API connections.
+- **Connect APIs** - The Connect APIs allow users to make the same API calls directly from Salesforce’s connect interface. This allows for these APIs to be called in flows as well.
+
+Calling APIs directly using the non connect method typically offers the best performance. However, there are use cases where that doesn't make sense. Therefore, please be advised that calling CONNECT APIs directly does not conform to the same SLAs that calling the API directly offers.
 
 As new APIs are made available to the C360, the collection will be expanded to include those.
 

@@ -21,6 +21,8 @@ Download and install the Postman app from [Postman](https://www.postman.com/down
 ### Web App
 Not currently supported. Please use the desktop application.
 
+>**Note**: These instructions are designed for use in the Direct APIs which are the recommended approach for invoking the CDP APIs. If you are going to be using the Connect APIs some steps such as the Key Pair, Connected App Setup, and App Authorization will not be required.
+
 ## Create Private Public Key Pair
 
 1. You’ll need a .key and a .crt file (private and public key)
@@ -65,7 +67,7 @@ This collection utilizes Salesforce's server to server [JWT bearer flow](https:/
 
         ![Connected App Setup 1 Screenshot](images/connected-app-setup-1.png)
     9. Select **Save** (on the next screen select **Continue**)
-    10. Make note of the **Consumer Key** value. This will be used as the **“clientId”** variable in the Postman collection.
+    10. Make note of the **Consumer Key** and **Consumer Secret** values. This will be used as the **“clientId”** and **“clientSecret”** variables in the Postman collection.
 
         ![Connected App Setup 2 Screenshot](images/connected-app-setup-2.png)
 
@@ -135,18 +137,25 @@ The collection uses a series of collection variables to help streamline your cal
 2. Open the **Variables** tab 
 3. Complete the following variables for your instance by placing the values in the **Current Value** column. 
 
-|Variable|Example Value|Description|
-|-|-|-|
-|loginUrl|login.salesforce.com|Using login.salesforce.com will be fine unless you are using a sandbox.|
-|clientId|3MVG9l2zHsylwlpR6H5xByqIHvFbLVATgzkY...|Consumer key from the connected app created in the [Connected App Setup](#connected-app-setup) section.|
-|userName|aaroncates@aaroncates-20210405.demo|User Name of the user you authorized in the [App Authorization](#app-authorization) section.|
-|privateKey|-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA6spOAo1NhTsOhj19M  <br />...<br />  rEOBZ458a3O4EOfHP1luZb4ZGrnTDRcA== <br /> -----END RSA PRIVATE KEY-----| Contents of host.key file generated in [Create Private Public Key Pair](#create-private-public-key-pair) section.|
+|Variable|Example Value|Description|Used In Direct APIs|Used In Connect APIs
+|-|-|-|-|-|
+|loginUrl|login.salesforce.com|Using login.salesforce.com will be fine unless you are using a sandbox.|X|X|
+|version|52.0|Salesforce API version number||X|
+|clientId|3MVG9l2zHsylwlpR6H5xByqIHvFbLVATgzkY...|Consumer key from the connected app.|X|X|
+|clientSecret|775C20434DB475FC326765353AF5210D4...|Consumer secret from the connected app.||X|
+|privateKey|-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA6spOAo1NhTsOhj19M  <br />...<br />  rEOBZ458a3O4EOfHP1luZb4ZGrnTDRcA== <br /> -----END RSA PRIVATE KEY-----| Contents of host.key file.|X||
+|userName|aaroncates@aaroncates-20210405.demo|User Name of the authorized user.|X|X|
+|password|superSecretPassword1!|Password of the authorized user.||X|
+|securityToken|fVhwzeDFMrAh4IC9hS|Salesforce security token for the authorized user. Details for securing a token available [here](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm).||X|
 
 4. Click **Save**.
 
     ![Collection variables screenshot](images/collection-variables.png)
 
 ## Collection Authentication
+
+**Direct APIs**
+
 The collection is built to leverage the [OAuth 2.0 JWT Bearer Flow for Server-to-Server Integration](https://help.salesforce.com/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5) for Salesforce Core authorization. The core token is then exchanged with the off core server hosting C360 for a final authorization token.
 
 ![Collection variables screenshot](images/authorization-flow.png)
@@ -166,6 +175,10 @@ The script creates six new variables that are used for token generation and shou
 The Marketing Cloud authorization tokens are valid for 2 hours therefore when a token is requested we create a new variable called **dne_c360TokenRefreshTime** that stores the time the token was generated. Each subsequent call will use this refresh time to determine if a new token should be requested.
 
 The token returned in the authorization call is stored as the collection variable **dne_c360OffcoreToken** and passed in the authorization header defined by a pre-request script at folder level.
+
+**Connect APIs**
+
+The connect APIs leverage the traditional Salesforce authentication request process. You must first run the `Auth Request` first and we leverage Postman's tests functionality to parse the response body and set the variables for `dne_c360AuthToken` and `dne_c360InstanceUrl` that are used in the remaining Connect API calls.
 
 ## Execute a Request
 
