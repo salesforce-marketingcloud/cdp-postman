@@ -41,12 +41,16 @@ The pre-request script has been written to determine if an environment has been 
 4. Rename the environment with something meaningful in relation with your Marketing Cloud instance (e.g.: “Playground 1”)
 5. Set values in the **CURRENT VALUE** column for the following variables. If you need instructions for getting these variables go to: [Configure the Collection](install-the-collection.md#configure-the-collection)
 
-|Variable|Example Value|Description|
-|-|-|-|
-|loginUrl|login.salesforce.com|Using login.salesforce.com will be fine unless you are using a sandbox.|
-|clientId|3MVG9l2zHsylwlpR6H5xByqIHvFbLVATgzkY...|Consumer key from the connected app created in the [Connected App Setup](install-the-collection.md#connected-app-setup) section.|
-|userName|aaroncates@aaroncates-20210405.demo|User Name of the user you authorized in the [App Authorization](install-the-collection.md#app-authorization) section.|
-|privateKey|-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA6spOAo1NhTsOhj19M  <br />...<br />  rEOBZ458a3O4EOfHP1luZb4ZGrnTDRcA== <br /> -----END RSA PRIVATE KEY-----| Contents of host.key file generated in [Create Private Public Key Pair](install-the-collection.md#create-private-public-key-pair) section.|
+|Variable|Example Value|Description|Used In Direct APIs|Used In Connect APIs
+|-|-|-|-|-|
+|loginUrl|login.salesforce.com|Using login.salesforce.com will be fine unless you are using a sandbox.|X|X|
+|version|52.0|Salesforce API version number||X|
+|clientId|3MVG9l2zHsylwlpR6H5xByqIHvFbLVATgzkY...|Consumer key from the connected app.|X|X|
+|clientSecret|775C20434DB475FC326765353AF5210D4...|Consumer secret from the connected app.||X|
+|privateKey|-----BEGIN RSA PRIVATE KEY----- MIIEpAIBAAKCAQEA6spOAo1NhTsOhj19M  <br />...<br />  rEOBZ458a3O4EOfHP1luZb4ZGrnTDRcA== <br /> -----END RSA PRIVATE KEY-----| Contents of host.key file.|X||
+|userName|aaroncates@aaroncates-20210405.demo|User Name of the authorized user.|X|X|
+|password|superSecretPassword1!|Password of the authorized user.||X|
+|securityToken|fVhwzeDFMrAh4IC9hS|Salesforce security token for the authorized user. Details for securing a token available [here](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm).||X|
 
 8. Click **Update** and close the environments dialog
 9. Select your environment from the environment dropdown
