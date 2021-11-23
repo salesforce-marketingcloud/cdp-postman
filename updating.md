@@ -7,7 +7,7 @@ You can keep your copy of the collection up to date to benefit from new API requ
 ## Pull Changes
 
 1. Navigate to the workspace that holds your collection
-2. Click on the “three dots” icon next to the “Salesforce C360 APIs” collection and select **Merge Changes** from the menu
+2. Click on the “three dots” icon next to the “Salesforce CDP APIs” collection and select **Merge Changes** from the menu
 
     ![Merge changes screenshot](images/merge-changes.png)
 

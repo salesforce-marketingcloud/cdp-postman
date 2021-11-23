@@ -12,7 +12,7 @@
 
 ## About
 
-We’re adding new API requests to the collection over time, but you’re welcome to help. The ability to receive community contributions is a guiding principle for the Salesforce C360 API collection.
+We’re adding new API requests to the collection over time, but you’re welcome to help. The ability to receive community contributions is a guiding principle for the Salesforce CDP API collection.
 
 With **Public Workspaces**, you’ll find the same contribution flow that you’re already familiar with in git: forks, pull requests and pulls.
 
@@ -40,7 +40,7 @@ Follow these guidelines when contributing to the collection:
 - Use the API documented names
 - Add description from the documentation in the Postman descriptions
 - API calls should work and be parametrized using environment variables:
-  - Endpoints must use `https://{{dne_c360OffcoreUrl}}` as host
+  - Endpoints must use `https://{{dne_cdpOffcoreUrl}}` as host
 - Optional: provide examples
 
 ## Create a Public Team
@@ -65,7 +65,7 @@ Follow these guidelines when contributing to the collection:
 
 ## Move your Collection to your Public Workplace
 
-1. Move your mouse over your “Salesforce C360 APIs” forked collection, click on the “three dots” icon next to it and select **Share collection** from the menu
+1. Move your mouse over your “Salesforce CDP APIs” forked collection, click on the “three dots” icon next to it and select **Share collection** from the menu
 2. Select your newly created public workspace from the list
 3. Click **Share and Continue**
 4. Click **Close**
@@ -77,7 +77,7 @@ Use the **Workspace** menu to navigate to your public workspace and find your co
 Once you're ready to contribute, follow these steps:
 
 1. Navigate to the workspace that holds your collection
-2. Click on the “three dots” icon next to the “Salesforce C360 APIs” collection and select **Create Pull Request** from the menu
+2. Click on the “three dots” icon next to the “Salesforce CDP APIs” collection and select **Create Pull Request** from the menu
 
     ![Create Pull Request screenshot](images/create-pull-request.png)
 
