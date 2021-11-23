@@ -1,8 +1,8 @@
 [Back to main page](README.md)
 
-# Working With Environments To Connect To Multiple C360 Instances
+# Working With Environments To Connect To Multiple CDP Instances
 
-While the variables are stored by default in the collection you can use Postman with [environments](#https://learning.postman.com/docs/sending-requests/managing-environments/) to work with multiple C360 instances in parallel.
+While the variables are stored by default in the collection you can use Postman with [environments](#https://learning.postman.com/docs/sending-requests/managing-environments/) to work with multiple CDP instances in parallel.
 
 The pre-request script has been written to determine if an environment has been selected. If it has been, the environment variables will be used for the authorization. By default in Postman the environment variables will supersede the collection level variables. 
 
@@ -16,12 +16,12 @@ The pre-request script has been written to determine if an environment has been 
 1. Using a browser, [sign in to Postman](https://identity.getpostman.com/login)
 2. Open the main collection with [this link](https://www.postman.com/salesforce-developers/workspace/salesforce-developers)
 3. Select the **Environments** tab (item A in following screenshot)
-4. Click **C360 Template Environment** (B)
+4. Click **CDP Template Environment** (B)
 5. Click on the “three dots” icon on the right (C) and select **Export** from the menu
 
     ![Export environment screenshot](images/export-env.png)
 
-    This downloads a `C360 Template Environment.postman_environment.json` file.
+    This downloads a `CDP Template Environment.postman_environment.json` file.
 
 6. Close the browser tab. We'll continue the installation on the Postman app
 7. In the Postman app, click **Import**
@@ -35,9 +35,9 @@ The pre-request script has been written to determine if an environment has been 
 
 	![Manage environment screenshot](images/manage-env.png)
 
-    This creates a `C360 Template Environment Copy` template.
+    This creates a `CDP Template Environment Copy` template.
 
-3. Click **C360 Template Environment Copy**
+3. Click **CDP Template Environment Copy**
 4. Rename the environment with something meaningful in relation with your Marketing Cloud instance (e.g.: “Playground 1”)
 5. Set values in the **CURRENT VALUE** column for the following variables. If you need instructions for getting these variables go to: [Configure the Collection](install-the-collection.md#configure-the-collection)
 

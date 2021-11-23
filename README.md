@@ -2,9 +2,9 @@
 > ℹ️   **April 2021 update:** This collection is maintained as a [Postman Public Workspace](https://www.postman.com/salesforce-developers). This makes it easier to install, update and contribute to the collection.<br/>
 This repository is dedicated to hosting the setup/contribution documentation and tracking issues.
 
-# C360 APIs for Postman
+# CDP APIs for Postman
 
-The current [Postman](https://www.postman.com) collection of consists of 25+ requests for the following Salesforce C360 APIs:
+The current [Postman](https://www.postman.com) collection of consists of 35+ requests for the following Salesforce CDP APIs:
 
 <table>
    <tr>
@@ -14,6 +14,7 @@ The current [Postman](https://www.postman.com) collection of consists of 25+ req
             <li>Query API</li>
             <li>Calculated Insights API</li>
             <li>Metadata</li>
+            <li>Ingestion</li>
          </ul>
       </td>
    </tr>
@@ -26,7 +27,7 @@ The collection is divided into 2 API types.
 
 Calling APIs directly using the non connect method typically offers the best performance. However, there are use cases where that doesn't make sense. Therefore, please be advised that calling CONNECT APIs directly does not conform to the same SLAs that calling the API directly offers.
 
-As new APIs are made available to the C360, the collection will be expanded to include those.
+As new APIs are made available to the CDP, the collection will be expanded to include those.
 
 ![Collection Overview](images/collection-overview.png)
 
@@ -44,7 +45,7 @@ Report issues and ask questions [here](https://github.com/salesforce-marketingcl
 
 ## Installation
 
-This collection currently only supports the **Postman desktop app** to connect to C360 with the Salesforce C360 APIs collection. 
+This collection currently only supports the **Postman desktop app** to connect to CDP with the Salesforce CDP APIs collection. 
 
 - [Install the Collection](install-the-collection.md)
 
@@ -54,5 +55,5 @@ We are evaluating the changes required to support the **Postman web app** as an 
 ## Additional Documentation
 
 - [Keeping the collection up to date](updating.md)
-- [Working With Environments To Connect To Multiple C360 Instances](working-with-environments.md)
+- [Working With Environments To Connect To Multiple CDP Instances](working-with-environments.md)
 - [Contributing](contributing.md)

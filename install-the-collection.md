@@ -41,27 +41,23 @@ Not currently supported. Please use the desktop application.
 
 This collection utilizes Salesforce's server to server [JWT bearer flow](https://help.salesforce.com/articleView?id=remoteaccess_oauth_jwt_flow.htm&type=5) for acquiring an access token. This portion of the setup will walk you through setting up the connected app.
 
-1. Login to Salesforce → Setup and Search **“OAuth Custom Scopes”**
-2. Select **“New Custom Scope”**
-    1. Name: cdpprofile **Important: ensure name and casing is identical**
-    2. Description: C360 Profile API
-    3. Select Save & New
-    4. Name: cdpquery **Important: ensure name and casing is identical**
-    5. Description: C360 Query API
-    6. Select Save
-3. In the Setup’s Quick Find search "**App Manager**"
-4. Select **“New Connected App”**
-    1. Connected App Name: C360 API
-    2. API Name: C360_API (or whatever default value is prepopulated)
+1. Login to Salesforce → Setup and Search "**App Manager**"
+2. In the Setup’s Quick Find search "**App Manager**"
+3. Select **“New Connected App”**
+    1. Connected App Name: CDP API
+    2. API Name: CDP_API (or whatever default value is prepopulated)
     3. Contact Email: Your email address
     4. Under API Heading, check the box for **“Enable OAuth Settings”**
     5. Callback URL: https://oauth.pstmn.io/v1/callback
     6. Select the checkbox for **“Use digital signatures”**
     7. Select **“Choose File”** and select the **host.crt** file created in [Create Private Public Key Pair](#create-private-public-key-pair) section
     8. Under **“Selected OAuth Scopes”** move the following from the “Available OAuth Scopes” to “Selected OAuth Scopes”
-        1. Access and manage your data (api)
-        2. Perform requests on your behalf at any time (refresh_token, offline_access)
-        3. Note: feel free to select others if needed.
+        1. Manage user data via APIs (api)
+        2. Perform requests at any time (refresh_token, offline_access)
+        3. Perform ANSI SQL queries on Salesforce CDP data (cdp_query_api)
+        4. Manage Salesforce CDP profile data (cdp_profile_api)
+        5. Manage Salesforce CDP Ingestion API data (cdp_ingest_api)
+        6. Note: feel free to select others if needed.
 
         > Your screen should look similar to this
 
@@ -75,10 +71,6 @@ This collection utilizes Salesforce's server to server [JWT bearer flow](https:/
     1. Select **“Edit Policies”**
     2. Change **“IP Relaxation”** to **“Relax IP restrictions”**
     3. Select **Save**
-    4. Scroll to the bottom on the page and select **“Manage OAuth Custom Scopes”**
-    5. Check the boxes for **“cdpprofile”** and **“cdpquery”** custom scopes created in step 2 of this section 
-        ![Connected App Setup 3 Screenshot](images/connected-app-setup-3.png)
-    6. **Save**
 
 ## App Authorization
 
@@ -87,7 +79,7 @@ At this point your connected app has been configured however there is a ***_one 
 The URL format will look like:
 
 ```
-<YOUR_ORG_URL>/services/oauth2/authorize?response_type=code&client_id=<YOUR_CONSUMER_KEY>&scope=api refresh_token cdpprofile cdpquery&redirect_uri=https://oauth.pstmn.io/v1/callback
+<YOUR_ORG_URL>/services/oauth2/authorize?response_type=code&client_id=<YOUR_CONSUMER_KEY>&scope=api refresh_token cdp_profile_api cdp_query_api cdp_ingest_api&redirect_uri=https://oauth.pstmn.io/v1/callback
 ```
 >Notice the scope parameter in the above URL. ***It’s important that you select all the required custom CDP scopes in this request***. All further JWT bearer flow requests will honor ONLY these scopes
 
@@ -98,7 +90,7 @@ The URL format will look like:
 **YOUR_CONSUMER_KEY** is the consumer key noted in step 4.x above.
 
 **Example URL:**
->https://aaroncates-20214005-demo.lightning.force.com/services/oauth2/authorize?response_type=code&client_id=asdlfjasldfjsaldfjaslfds&scope=api%20refresh_token%20cdpprofile%20cdpquery&redirect_uri=https://oauth.pstmn.io/v1/callback
+>https://aaroncates-20214005-demo.lightning.force.com/services/oauth2/authorize?response_type=code&client_id=asdlfjasldfjsaldfjaslfds&scope=api%20refresh_token%20cdp_profile_api%20cdp_query_api%20cdp_ingest_api&redirect_uri=https://oauth.pstmn.io/v1/callback
 
 1. Paste that URL in a browser window. 
 2. This prompts a consent dialog asking permission for each of the scopes requested above.  Select **Allow** and you should be redirected back.
@@ -120,7 +112,7 @@ The URL format will look like:
 
     ![Searching for Salesforce screenshot](images/search-salesforce.png)
 
-3. Click the **Salesforce C360 APIs** tile
+3. Click the **Salesforce CDP APIs** tile
 4. Click **Fork**
 
     ![Fork button screenshot](images/fork-button.png)
@@ -133,7 +125,7 @@ The URL format will look like:
 
 The collection uses a series of collection variables to help streamline your calls. To successfully use the package it's important to be sure to update the collection variables.
 
-1. Click **Salesforce C360 APIs**
+1. Click **Salesforce CDP APIs**
 2. Open the **Variables** tab 
 3. Complete the following variables for your instance by placing the values in the **Current Value** column. 
 
@@ -156,7 +148,7 @@ The collection uses a series of collection variables to help streamline your cal
 
 **Direct APIs**
 
-The collection is built to leverage the [OAuth 2.0 JWT Bearer Flow for Server-to-Server Integration](https://help.salesforce.com/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5) for Salesforce Core authorization. The core token is then exchanged with the off core server hosting C360 for a final authorization token.
+The collection is built to leverage the [OAuth 2.0 JWT Bearer Flow for Server-to-Server Integration](https://help.salesforce.com/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5) for Salesforce Core authorization. The core token is then exchanged with the off core server hosting CDP for a final authorization token.
 
 ![Collection variables screenshot](images/authorization-flow.png)
 
@@ -165,27 +157,27 @@ The collection is built to leverage the [OAuth 2.0 JWT Bearer Flow for Server-to
 This is accomplished by using the collection variables defined in the [Configure the Collection](#configure-the-collection) section combined with a pre-request script. 
 
 The script creates six new variables that are used for token generation and should not be edited:
-* dne_c360TokenRefreshTime
-* dne_c360Assertion
-* dne_c360AuthToken
-* dne_c360InstanceUrl
-* dne_c360OffcoreToken
-* dne_c360OffcoreUrl
+* dne_cdpTokenRefreshTime
+* dne_cdpAssertion
+* dne_cdpAuthToken
+* dne_cdpInstanceUrl
+* dne_cdpOffcoreToken
+* dne_cdpOffcoreUrl
 
-The Marketing Cloud authorization tokens are valid for 2 hours therefore when a token is requested we create a new variable called **dne_c360TokenRefreshTime** that stores the time the token was generated. Each subsequent call will use this refresh time to determine if a new token should be requested.
+The Marketing Cloud authorization tokens are valid for 2 hours therefore when a token is requested we create a new variable called **dne_cdpTokenRefreshTime** that stores the time the token was generated. Each subsequent call will use this refresh time to determine if a new token should be requested.
 
-The token returned in the authorization call is stored as the collection variable **dne_c360OffcoreToken** and passed in the authorization header defined by a pre-request script at folder level.
+The token returned in the authorization call is stored as the collection variable **dne_cdpOffcoreToken** and passed in the authorization header defined by a pre-request script at folder level.
 
 **Connect APIs**
 
-The connect APIs leverage the traditional Salesforce authentication request process. You must first run the `Auth Request` first and we leverage Postman's tests functionality to parse the response body and set the variables for `dne_c360AuthToken` and `dne_c360InstanceUrl` that are used in the remaining Connect API calls.
+The connect APIs leverage the traditional Salesforce authentication request process. You must first run the `Auth Request` first and we leverage Postman's tests functionality to parse the response body and set the variables for `dne_cdpAuthToken` and `dne_cdpInstanceUrl` that are used in the remaining Connect API calls.
 
 ## Execute a Request
 
 1. Expand the collection and select the `Profile API -> Metadata - DMO` request
 1. Click `Send`
 
-At this point, if your environment is correctly set up, you should see a `200 OK` status. This means that you have successfully authenticated with Salesforce C360 and that you can now use the other collection’s requests.
+At this point, if your environment is correctly set up, you should see a `200 OK` status. This means that you have successfully authenticated with Salesforce CDP and that you can now use the other collection’s requests.
 
 ![DMO Metadata Success](images/metadata-dmo-200.png)
 
