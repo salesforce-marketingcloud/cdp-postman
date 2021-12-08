@@ -107,6 +107,14 @@ The URL format will look like:
 
 ## Fork the Collection
 
+Fork the collection using the following button or follow the instructions listed below.
+
+##### Option 1:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/14448118-8145476a-1797-4b2a-b219-37c6d438d956?action=collection%2Ffork&collection-url=entityId%3D14448118-8145476a-1797-4b2a-b219-37c6d438d956%26entityType%3Dcollection%26workspaceId%3D34382471-0c97-40e5-a206-f947271665c4#?env%5BCDP%20Template%20Environment%5D=W3sia2V5IjoibG9naW5VcmwiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY2xpZW50SWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidXNlck5hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicHJpdmF0ZUtleSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX1d)
+
+##### Option 2:
+
 1. In Postman, click on the top search bar and type **Salesforce**
 2. Click **Salesforce Developers** under Teams
 
